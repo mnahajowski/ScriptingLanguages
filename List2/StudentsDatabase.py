@@ -1,3 +1,5 @@
+import tabulate
+
 studentsDatabase = [
     {
         'imie': "Pawel",
@@ -93,7 +95,10 @@ studentsDatabase = [
 
 
 def printAllStudents():
-    print(studentsDatabase)
+    header = studentsDatabase
+    rows = [x.values() for x in studentsDatabase]
+    print(tabulate.tabulate(rows, header))
+    #print(studentsDatabase)
 
 
 def printAllStudentsSortedBySurname():
@@ -105,22 +110,24 @@ def printAllStudentSortedByAverage():
 
 
 def findStudentInDatabase():
+    print("Enter PESEL of the student you want to find ")
     findPESEL = input()
     print(list(filter(lambda person: person['PESEL'] == findPESEL, studentsDatabase)))
 
 
 def deleteStudentFromDatabase():
     global studentsDatabase
-    print("Enter PESEL of the student you want to delete")
+    print("Enter PESEL of the student you want to delete ")
     peselUcznia = input()
     new_list = [i for i in studentsDatabase if i['PESEL'] != peselUcznia]
     studentsDatabase = new_list
+    print(f"Student with PESEL {peselUcznia} successfully deleted ")
 
 
-def copyDatabase():
-    sredniaOcen = inputFloat("Enter maximum average allowed")
+def copyDatabaseWithWantedAverage():
+    sredniaOcen = inputFloat("Enter maximum average allowed ")
     uczniowieSrednia = list(filter(lambda person: person['srednia ocen'] < sredniaOcen, studentsDatabase))
-    choose = inputInteger("Do you want to display values? 1 - TAK")
+    choose = inputInteger("Do you want to display values? 1 - TAK ")
     if choose == 1:
         print(uczniowieSrednia)
 
@@ -165,7 +172,7 @@ def inputFloat(message):
 def exitProgram():
     print("Leaving the database...")
 
-def errhandler():
+def errorHandler():
     print("Invalid number")
 
 
@@ -174,9 +181,9 @@ actions = {'1': printAllStudents,
            '3': printAllStudentSortedByAverage,
            '4': findStudentInDatabase,
            '5': deleteStudentFromDatabase,
-           '6': copyDatabase,
+           '6': copyDatabaseWithWantedAverage,
            '7': addStudent,
-           '8': exitProgram}
+           '0': exitProgram}
 
 if __name__ == "__main__":
 
@@ -184,6 +191,6 @@ if __name__ == "__main__":
         print(key, '=>', actions[key].__name__)
 
     selectedAction = input("Plesase select an action from the menu: ")
-    while selectedAction != '8':
-        actions.get(selectedAction, errhandler)()
+    while selectedAction != '0':
+        actions.get(selectedAction, errorHandler)()
         selectedAction = input("Please select an action from the menu: ")
