@@ -20,7 +20,7 @@ class Osoba(ABC):
 
     @property
     def surname(self):
-        return self._surname
+        return self.__surname
 
     @surname.setter
     def surname(self, newSurname):

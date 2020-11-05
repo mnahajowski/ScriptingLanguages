@@ -7,7 +7,7 @@ class PracownikPwr(Osoba):
     @abstractmethod
     def __init__(self, name, surname, pesel, gender, yearOfStart):
         super().__init__(name, surname, pesel, gender)
-        self._yearOfStart = yearOfStart
+        self.__yearOfStart = yearOfStart
 
     @property
     def yearOfStart(self):

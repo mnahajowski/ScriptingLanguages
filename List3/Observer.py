@@ -8,11 +8,11 @@ from typing import List
 class Subject(ABC):
 
     @abstractmethod
-    def attach(self, observer: Observer):
+    def subscribe(self, observer: Observer):
         pass
 
     @abstractmethod
-    def detach(self, observer: Observer):
+    def unsubscribe(self, observer: Observer):
         pass
 
     @abstractmethod
@@ -37,42 +37,42 @@ class SingleSubject(Subject):
     def observers(self):
         return self.__observers
 
-    def attach(self, observer: Observer):
+    def subscribe(self, observer: Observer) -> None:
         print("Subject attached to an observer")
         self.observers.append(observer)
 
-    def detach(self, observer: Observer):
+    def unsubscribe(self, observer: Observer) -> None:
         self.observers.remove(observer)
 
-    def notify(self):
+    def notify(self) -> None:
         print("State of subject changed. Notifying observers...")
         for observer in self.observers:
             observer.update(self)
 
-    def some_business_logic(self):
+    def changingState(self) -> None:
         print("\nSubject is changing state...")
         self.state = randrange(0, 10)
 
-        print(f"Subject's' state has just changed to: {self._state}")
+        print(f"Subject's' state has just changed to: {self.__state}")
         self.notify()
 
 
 class Observer(ABC):
 
     @abstractmethod
-    def update(self, subject: Subject):
+    def update(self, subject: Subject) -> None:
         pass
 
 
 class SingleObserverA(Observer):
-    def update(self, subject: Subject):
-        if subject.state < 3:
+    def update(self, subject: Subject) -> None:
+        if subject.state <= 5:
             print("Reacting to the subject state - observer A")
 
 
 class SingleObserverB(Observer):
-    def update(self, subject: Subject):
-        if subject.state == 0 or subject.state >= 2:
+    def update(self, subject: Subject) -> None:
+        if subject.state == 0 or subject.state >= 1:
             print("Reacting to the subject state - observer B")
 
 
@@ -80,14 +80,15 @@ if __name__ == "__main__":
     subject = SingleSubject()
 
     observer_a = SingleObserverA()
-    subject.attach(observer_a)
+    subject.subscribe(observer_a)
 
     observer_b = SingleObserverB()
-    subject.attach(observer_b)
+    subject.subscribe(observer_b)
 
-    subject.some_business_logic()
-    subject.some_business_logic()
+    subject.changingState()
+    subject.changingState()
+    subject.changingState()
 
-    subject.detach(observer_a)
-
-    subject.some_business_logic()
+    subject.unsubscribe(observer_a)
+    subject.changingState()
+    subject.changingState()

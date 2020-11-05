@@ -8,6 +8,7 @@ if __name__ == '__main__':
     stud = Student("Marcin", "Nahajowski", '98082700958', "mezczyzna", 3, 5.01, "informatyka")
     stud.printData()
     prac1 = PracownikNaukowy("Harry", "Pajac", '68051100657', "mezczyzna", 2000, "Bazy danych")
+    prac2 = PracownikAdministracyjny("Henio", "Garnek", '68103000657', "mezczyzna", 2005, "Kadry")
     prac1.printData()
 
     stud1 = Student("Pawel", "Nowak", '97082700565', "mezczyzna", 2, 4.81, "informatyka")
@@ -21,7 +22,7 @@ if __name__ == '__main__':
     stud9 = Student("Piotr", "Poziomek", '97082700565', "mezczyzna", 2, 4.42, "informatyka")
     stud10 = Student("Pawel", "Konter", '98081700565', "mezczyzna", 2, 3.89, "informatyka")
 
-    people = [stud1, stud2, stud3, stud4, stud5, stud6, stud7, stud8, stud9, stud10, prac1]
+    people = [stud, stud1, stud2, stud3, stud4, stud5, stud6, stud7, stud8, stud9, stud10, prac1, prac2]
 
     for key in PeopleDatabase.actions:
         print(key, '=>', PeopleDatabase.actions[key].__name__)
