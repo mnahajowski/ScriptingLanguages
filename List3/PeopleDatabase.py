@@ -2,29 +2,33 @@ from Uczniowie import Student
 import pickle
 
 
-def printAllPeople(people: list):
+def printAllPeople(people: list) -> None:
     for key in people:
         print(people.index(key) + 1)
         key.printData()
 
 
-def printAllStudentsSortedBySurname(people: list):
-    people.sort(key=lambda k: k.surname)
-    printAllPeople(people)
+def printAllStudentsSortedBySurname(people: list) -> None:
+    ucznioweSortedBySurname = [student for student in
+                        (person for person in people if isinstance(person, Student))]
+    ucznioweSortedBySurname.sort(key=lambda k: k.surname)
+    printAllPeople(ucznioweSortedBySurname)
 
 
-def printAllStudentSortedByAverage(people: list):
-    people.sort(key=lambda k: k.averageOfGrades)
-    printAllPeople(people)
+def printAllStudentSortedByAverage(people: list) -> None:
+    ucznioweSortedByAverage = [student for student in
+                               (person for person in people if isinstance(person, Student))]
+    ucznioweSortedByAverage.sort(key=lambda k: k.averageOfGrades)
+    printAllPeople(ucznioweSortedByAverage)
 
 
-def findStudentInDatabase(people: list):
+def findStudentInDatabase(people: list) -> None:
     print("Enter PESEL of the student you want to find ")
     findPESEL = input()
-    printAllPeople(list(filter(lambda person: person.pesel == findPESEL, people)))
+    printAllPeople(list(filter(lambda person: person.pesel == findPESEL and isinstance(person, Student), people)))
 
 
-def deleteStudentFromDatabase(people: list):
+def deleteStudentFromDatabase(people: list) -> None:
     print("Enter PESEL of the student you want to delete ")
     peselUcznia = input()
     new_list = [i for i in people if i.pesel != peselUcznia]
@@ -32,11 +36,11 @@ def deleteStudentFromDatabase(people: list):
     print(f"Student with PESEL {peselUcznia} successfully deleted ")
 
 
-def exitProgram():
+def exitProgram() -> None:
     print("Leaving the database...")
 
 
-def copyDatabaseWithWantedAverage(people: list):
+def copyDatabaseWithWantedAverage(people: list) -> None:
     sredniaOcen = inputFloat("Enter maximum average allowed ")
 
     uczniowieSrednia = [student for student in
@@ -47,7 +51,7 @@ def copyDatabaseWithWantedAverage(people: list):
         printAllPeople(uczniowieSrednia)
 
 
-def addStudent(people: list):
+def addStudent(people: list) -> None:
     print("Enter name")
     newName = input()
     print("Enter surname")
@@ -67,12 +71,12 @@ def addStudent(people: list):
     newStudent.printData()
 
 
-def saveToFile(people : list):
+def saveToFile(people : list) -> None:
     pickle.dump(people, open('peopleData', 'wb'))
     print("Data successfully saved")
 
 
-def inputInteger(message):
+def inputInteger(message) -> None:
     while True:
         try:
             userInput = int(input(message))
@@ -82,7 +86,7 @@ def inputInteger(message):
             return userInput
 
 
-def inputFloat(message):
+def inputFloat(message) -> None:
     while True:
         try:
             userInput = float(input(message))
@@ -103,5 +107,5 @@ actions = {'1': printAllPeople,
            '0': exitProgram}
 
 
-def errorHandler():
+def errorHandler() -> None:
     print("Invalid number")
