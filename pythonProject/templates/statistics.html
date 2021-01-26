@@ -1,0 +1,45 @@
+{% extends "index.html" %}
+{% block title %}Statystyki{% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="/static/styles/statistics.css">{% endblock %}
+{% block content %}
+
+
+<div class="welcomeText">STATISTICS</div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+<div class="wrapper">
+    <div style="grid-column: 1; grid-row: 1 / 6;">
+        <div style="height: 580px; width: 1300px;">
+            <canvas id="rice" width="600" height="400"></canvas>
+        </div>
+    </div>
+    <div class="statisticButton" style="grid-row: 1;">
+        <button class="btn btn-primary btn-lg active" type="button" onclick="getData('clientsCount')">Liczba zamówień
+        </button>
+    </div>
+    <div class="statisticButton" style="grid-row: 2;">
+        <button class="btn btn-primary btn-lg active" type="button" onclick="getData('productsCount')">Liczba towarów
+        </button>
+    </div>
+    <div class="statisticButton" style="grid-row: 3;">
+        <button class="btn btn-primary btn-lg active" type="button" onclick="getData('productsSum')">Suma towarów
+        </button>
+    </div>
+    <div class="statisticButton" style="grid-row: 4;">
+        <button class="btn btn-primary btn-lg active" type="button" onclick="getData('factorySum')">Suma w fabrykach
+        </button>
+    </div>
+    <div class="statisticButton" style="grid-row: 5;">
+        <button class="btn btn-primary btn-lg active" type="button" onclick="getData('factoryCount')">Liczba fabryk
+        </button>
+    </div>
+</div>
+
+<script>
+    var myData1 = {{ data[0] | tojson}};
+    var myData2 = {{ data[1] | tojson}};
+    var myData3 = {{ data[2] | tojson}};
+</script>
+<script src="../static/js/statistics.js">
+</script>
+{% endblock %}

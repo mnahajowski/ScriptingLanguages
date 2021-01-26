@@ -1,0 +1,33 @@
+.cancelbtn {
+  background-color: gray; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.deletebtn:hover{
+    background-color: white;
+    color: black;
+}
+
+.cancelbtn:hover{
+    background-color: white;
+    color: black;
+}
+
+.deletebtn {
+  background-color: red; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}

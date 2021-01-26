@@ -1,0 +1,38 @@
+{% extends "index.html" %}
+{% block title %}Add Factory{% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="/static/styles/form.css">{% endblock %}
+{% block content %}
+
+<form class="was-validated addForm" action="{{ url_for('addpro') }}" method="POST">
+    <label class="form-label">Identyfikator</label>
+    <input name="id" value={{data[0]}}>
+    <div class="mb-3">
+        <br>
+        <label for="validationTextarea" class="form-label">Nazwa produktu</label>
+        <input type="text" name="nm" class="form-control is-invalid formInput" id="validationTextarea"
+               placeholder="Nazwa produktu" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+
+    <label for="validationTextarea" class="form-label">Nazwa fabryki</label>
+    <select class="form-select formInput" aria-label="Default select example" name="fab">
+        {% for item in data[1] %}
+        <option>{{item[1]}}</option>
+        {% endfor %}
+    </select>
+
+    <div class="form-check mb-3" style="margin-top: 3vw;">
+        <input type="checkbox" class="form-check-input" id="validationFormCheck1" required>
+        <label class="form-check-label" for="validationFormCheck1">Potwierdź dodanie nowego produktu do bazy</label>
+        <div class="invalid-feedback">Nie zatwierdziłeś dodania nowego produktu do bazy</div>
+    </div>
+
+
+    <div class="mb-3">
+        <button class="btn btn-primary" type="submit">Dodaj produkt</button>
+    </div>
+</form>
+{% endblock %}

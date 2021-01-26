@@ -1,0 +1,53 @@
+{% extends "index.html" %}
+{% block title %}Factory select page{% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="/static/styles/form.css">{% endblock %}
+{% block content %}
+
+<form class="was-validated addForm" action="{{ url_for('confirmOrder') }}" method="POST">
+
+    <br>
+    <div class="ui-widget">
+        <label for="tags">Klient: </label>
+        <input readonly id="tags" name="cli" value="{{data[3]}}">
+    </div>
+    <br>
+    <label class="form-label">Wybierz fabrykę, z której chcesz zamówić ten produkt</label>
+    <select class="form-select formInput" aria-label="Default select example" name="factSel">
+        {% for item in data[0] %}
+        <option>{{item[0]}}</option>
+        {% endfor %}
+    </select>
+
+    <br>
+    <br>
+    <div class="mb-3">
+        <label class="form-label">Nazwa zamawianego produktu</label>
+        <br>
+        <input readonly class="formInput" type="text" name="prodSel" placeholder="Nazwa zamawianego produktu"
+               value="{{data[2]}}">
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+        <br>
+        <br>
+        <div class="mb-3">
+            <label class="form-label">Ilość zamawianego produktu</label>
+            <br>
+            <input readonly type="text" class="formInput" name="count" inputmode="numeric"
+                   placeholder="Ilość zamawianego produktu"
+                   value="{{data[1]}}">
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="validationFormCheck1" required>
+            <label class="form-check-label" for="validationFormCheck1">
+                Zatwierdź
+            </label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Zatwierdź zamówienie</button>
+</form>
+{% endblock %}

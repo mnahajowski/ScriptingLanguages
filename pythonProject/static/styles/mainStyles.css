@@ -1,0 +1,149 @@
+
+.form-control.input-lg.bigSearch{
+    font-size:25pt;
+    width:50%;
+    margin-top:10%;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.form-control.input-lg.smallSearch{
+    font-size:12pt;
+    width:50%;
+    margin-top:1%;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.btn.btn-default.btn-lg.closeButton {
+    position: absolute;
+    top: 1%;
+    right: 3%;
+}
+
+.btn.btn-primary.btn-lg.addButton {
+    position: absolute;
+    width: 20%;
+    height: 15%;
+    top: 60%;
+    left: 10%;
+}
+
+.segmentDescription {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+}
+
+.importantLabel {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.normalLabel {
+    font-size: 35px;
+}
+
+
+button:hover {
+  opacity:1;
+}
+
+/* Float cancel and delete buttons and add an equal width */
+.cancelbtn, .deletebtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add a color to the cancel button */
+.cancelbtn {
+  background-color: #ccc;
+  color: black;
+}
+
+/* Add a color to the delete button */
+.deletebtn {
+  background-color: #f44336;
+}
+
+/* Add padding and center-align text to the container */
+.container {
+  padding: 16px;
+  text-align: center;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    text-align: center;
+  background-color: #474e5d;
+    margin: 5% auto 15% auto;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+.close {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #f1f1f1;
+}
+
+.close:hover,
+.close:focus {
+  color: #f44336;
+  cursor: pointer;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.setRight {
+    text-align: right;
+}
+
+.setLeft {
+    text-align: left;
+}
+
+.btn.btn-primary.btn-circle.btn-lg {
+    position: fixed;
+    right:0;
+    bottom:0;
+}
+
+.welcomeText {
+    text-align: center;
+    font-size: 50px;
+    border: black solid 0.1rem;
+    vertical-align: middle;
+}
+
+@media screen and (max-width: 300px) {
+  .cancelbtn, .deletebtn {
+    width: 100%;
+  }
+}

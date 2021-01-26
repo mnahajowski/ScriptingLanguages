@@ -1,0 +1,55 @@
+{% extends "index.html" %}
+{% block title %}Order Page{% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="/static/styles/form.css">{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+        var myData = {{ data[1] | tojson}};
+</script>
+<script src="../static/js/autocomplete.js">
+
+</script>
+
+<form class="was-validated addForm" action="{{ url_for('makeOrder') }}" id="addCliForm" method="POST">
+    <br>
+    <label class="form-label">Nazwa klienta</label>
+    <div class="ui-widget">
+        <input id="tags" class="formInput" name="cli" placeholder="Wybierz klienta">
+    </div>
+    <br>
+    <label class="form-label">Zamawiany produkt</label>
+    <select class="form-select formInput" aria-label="Default select example" name="prodSel">
+        {% for item in data[0] %}
+        <option>{{item[1]}}</option>
+        {% endfor %}
+    </select>
+
+    <br>
+    <br>
+    <div class="mb-3">
+        <label for="validationTextarea" class="form-label">Ilość zamawianego produktu</label>
+        <input type="text" name="count" inputmode="numeric" class="form-control is-invalid formInput"
+               id="validationTextarea" placeholder="Ilość zamawianego produktu"
+               required pattern="^[0-9]*">
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+    <div class="form-check mb-3">
+        <input type="checkbox" class="form-check-input" id="validationFormCheck1" required>
+        <label class="form-check-label" for="validationFormCheck1">
+            Zatwierdź
+        </label>
+    </div>
+    </div>
+    <button type="submit" id="submitButton" class="btn btn-primary">Przejdź do wyboru fabryki</button>
+</form>
+
+<script src="../static/js/addOrder.js">
+
+</script>
+{% endblock %}

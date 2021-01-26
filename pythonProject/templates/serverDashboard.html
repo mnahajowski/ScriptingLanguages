@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+          crossorigin="anonymous">
+    <title>{% block title %}Server{% endblock %}</title>
+</head>
+<link rel="stylesheet" href="../static/styles/mainStyles.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<link rel="stylesheet" href="../static/styles/mainStyles.css">
+<link rel="stylesheet" href="../static/styles/modal.css">
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark navbar-fixed-left" style="background-color: green; text-color: white;">
+    <div class="container-fluid">
+        <a class="navbar-brand">Serwer</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+<br>
+<br>
+<div style="text-align: center;">
+    <button data-toggle="modal" alt="customers" type="button" class="open-AddBookDialog btn-lg btn-danger">
+        Usuń klientow
+    </button>
+</div>
+<br>
+<br>
+<div style="text-align: center;">
+    <button data-toggle="modal" alt="products" type="button" class="open-AddBookDialog btn-lg btn-danger">
+        Usuń produkty
+    </button>
+</div>
+<br>
+<br>
+<div style="text-align: center;">
+    <button data-toggle="modal" alt="factories" type="button" class="open-AddBookDialog btn-lg btn-danger">
+        Usuń fabryki
+    </button>
+</div>
+<br>
+<br>
+<div style="text-align: center;">
+    <button data-toggle="modal" alt="orders" type="button" class="open-AddBookDialog btn-lg btn-danger">
+        Usuń zamówienia
+    </button>
+</div>
+<br>
+<br>
+<form action="{{ url_for('copyDatabase') }}" method="post">
+    <div style="text-align: center;">
+        <a href="Update">
+            <button data-toggle="modal" type="submit" class="btn-lg btn-danger">
+                Skopiuj bazę danych
+            </button>
+        </a>
+    </div>
+</form>
+
+<script src="../static/js/modal.js">
+
+</script>
+
+<div id="id01" class="modal">
+    <span onclick="document.getElementById('id01').style.display='none'" class="close"
+          title="Close Modal">&times;</span>
+    <form>
+        <div class="modal-content">
+            <h1>Usuń tabelę</h1>
+            <p>Czy na pewno chcesz usunąć?</p>
+
+            <div>
+                <button onclick="document.getElementById('id01').style.display='none'" type="button" class="cancelbtn">
+                    Nie
+                </button>
+                <a href="/delete/" onclick="location.href=this.href+''+myValue;return false;">
+                    <button type="button" class="deletebtn">Tak</button>
+                </a>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="/static/js/exitModal.js">
+
+</script>
+
+</body>

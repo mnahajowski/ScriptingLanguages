@@ -1,0 +1,65 @@
+{% extends "index.html" %}
+{% block title %}Clients list{% endblock %}
+{% block content %}
+
+<div class="welcomeText">LISTA KLIENTÓW
+</div>
+<a class="d-flex align-items-center" href="/AddClient">
+    <button type="button" class="btn btn-primary btn-circle btn-lg">Dodaj</button>
+</a>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col" class="setLeft">Lp.</th>
+        <th scope="col" class="setLeft">Nazwa</th>
+        <th scope="col" class="setLeft">Miasto</th>
+        <th scope="col" class="setLeft">Kod pocztowy</th>
+        <th scope="col" class="setLeft">NIP</th>
+        <th scope="col" class="setLeft"></th>
+    </tr>
+    </thead>
+    {% for item in data %}
+    <tr>
+        <td class="setLeft">{{item[0]}}</td>
+        <td class="setLeft">{{item[1]}}</td>
+        <td class="setLeft">{{item[2]}}</td>
+        <td class="setLeft">{{item[3]}}</td>
+        <td class="setLeft">{{item[4]}}</td>
+        <td style="text-align: center;">
+            <button data-toggle="modal" alt={{item[0]}} type="button" class="open-AddBookDialog btn-lg btn-danger">
+                Usuń
+            </button>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+<script src="../static/js/modal.js">
+
+</script>
+
+<div id="id01" class="modal">
+    <span onclick="document.getElementById('id01').style.display='none'" class="close"
+          title="Close Modal">&times;</span>
+    <form>
+        <div class="modal-content">
+            <h1 style="color: #cccccc">Usuń rekord</h1>
+            <p style="color: #cccccc">Czy na pewno chcesz usunąć?</p>
+
+            <div>
+                <button onclick="document.getElementById('id01').style.display='none'" type="button" class="cancelbtn">
+                    Nie
+                </button>
+                <a href="/delete/customers/" onclick="location.href=this.href+''+myValue;return false;">
+                    <button type="button" class="deletebtn">Tak</button>
+                </a>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="/static/js/exitModal.js">
+
+</script>
+
+{% endblock %}
